@@ -11,6 +11,12 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import django_heroku
+from pathlib import Path
+from decouple import config,Csv
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,10 +26,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ')p8c2g4laxvl(lg@z-r&6*t3^2@#7(bkrd0szmv&mh%82ea56i'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG =  config('DEBUG', default=False, cast=bool)
+
 
 ALLOWED_HOSTS = []
 
@@ -41,6 +48,7 @@ INSTALLED_APPS = [
     #Local Apps
     'posts',
     'users',
+    'cloudinary'
 ]
 
 MIDDLEWARE = [
@@ -77,6 +85,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'platzigram.wsgi.application'
 
+cloudinary.config( 
+  cloud_name = "dyeurfiuk", 
+  api_key = "511211318861418", 
+  api_secret = "3doP76uNzv1fxSD9qmej1Swjclo" 
+)
+
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
@@ -84,9 +98,9 @@ WSGI_APPLICATION = 'platzigram.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE':'django.db.backends.postgresql_psycopg2',
-        'NAME': 'instagram',
-        'USER':'moringa',
-        'PASSWORD':'ragnarok'
+        'NAME': config('DB_NAME'),
+        'USER':config('DB_USER'),
+        'PASSWORD':config('DB_PASSWORD'),
     }
 }
 

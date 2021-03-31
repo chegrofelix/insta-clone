@@ -1,1 +1,1 @@
-Platzigram_2018_Django
+# Instagram_clone_django
