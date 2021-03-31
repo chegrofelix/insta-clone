@@ -86,9 +86,9 @@ TEMPLATES = [
 WSGI_APPLICATION = 'platzigram.wsgi.application'
 
 cloudinary.config( 
-  cloud_name = "dyeurfiuk", 
-  api_key = "511211318861418", 
-  api_secret = "3doP76uNzv1fxSD9qmej1Swjclo" 
+  cloud_name = config('cloud_name'), 
+  api_key = config('api_key'), 
+  api_secret = config('api_secret')
 )
 
 
