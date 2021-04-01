@@ -4,6 +4,7 @@
 from django.db import models
 #from django.contrib.auth.models import User
 from users.models import Profile
+from cloudinary.models import CloudinaryField
 
 
 class Post(models.Model):
@@ -13,7 +14,8 @@ class Post(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
     title = models.CharField(max_length=255)
-    photo = models.ImageField(upload_to='posts/photos')
+    photo = CloudinaryField('image')
+    
 
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
