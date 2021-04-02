@@ -50,6 +50,11 @@ source .env
 
 python manage.py server
 
+## Live link
+
+https://instgrm-django.herokuapp.com/
+
+
 ## License
 
 MIT 2021
